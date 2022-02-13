@@ -2,10 +2,15 @@ import express from 'express'
 import colors from 'colors'
 import 'dotenv/config'
 
+import connectDB from './config/db.js'
+
 import { errorHandler } from './middleware/errorHandler.js'
 
 import goalsRoutes from './routes/goalsRoutes.js'
 
+
+// Conectando ao BD
+connectDB()
 
 // Inicialização do express
 const app = express()
