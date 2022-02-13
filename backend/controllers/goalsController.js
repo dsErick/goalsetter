@@ -13,9 +13,19 @@ export function index(req, res, next) {
  * @access Public
  */
 export function store(req, res, next) {
+    const { text } = req.body
+
+    if (!text) {
+        res.status(422)
+        throw new Error('O campo texto é obrigatório.')
+    }
+
     res.status(201).json({
-        message: 'Goal created',
-        data: {},
+        message: 'Objetivo criado',
+        data: {
+            id: Math.floor(Math.random() * 100),
+            text
+        },
     })
 }
 
@@ -37,7 +47,7 @@ export function show(req, res, next) {
  */
 export function update(req, res, next) {
     res.status(200).json({
-        message: 'Goal updated',
+        message: 'Objetivo atualizado',
         data: {
             id: req.params.goalId
         },

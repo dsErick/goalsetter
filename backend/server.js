@@ -2,16 +2,24 @@ import express from 'express'
 import colors from 'colors'
 import 'dotenv/config'
 
+import { errorHandler } from './middleware/errorHandler.js'
+
 import goalsRoutes from './routes/goalsRoutes.js'
+
 
 // Inicialização do express
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 
 /**
- * Rotas
+ * Rotas & Middlewares
  */
 app.use('/api/v1/goals', goalsRoutes)
+
+app.use(errorHandler)
 
 
 /**
