@@ -1,18 +1,20 @@
+import asyncHandler from "../middleware/asyncHandler.js"
+
 /**
  * @route GET /api/v1/orders
  * @access Public
  */
-export function index(req, res, next) {
+export const index = asyncHandler(async (req, res) => {
     res.status(200).json({
         data: []
     })
-}
+})
 
 /**
  * @route POST /api/v1/orders
  * @access Public
  */
-export function store(req, res, next) {
+export const store = asyncHandler(async (req, res, next) => {
     const { text } = req.body
 
     if (!text) {
@@ -27,38 +29,37 @@ export function store(req, res, next) {
             text
         },
     })
-}
+})
 
 /**
  * @route GET /api/v1/orders/:goalId
  * @access Public
  */
-export function show(req, res, next) {
+export const show = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         data: {
             id: req.params.goalId
         },
     })
-}
+})
 
 /**
  * @route PUT /api/v1/orders/:goalId
  * @access Public
  */
-export function update(req, res, next) {
+export const update = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         message: 'Objetivo atualizado',
         data: {
             id: req.params.goalId
         },
     })
-}
+})
 
 /**
  * @route DELETE /api/v1/orders/:goalId
  * @access Public
  */
-export function destroy(req, res, next) {
+export const destroy = asyncHandler(async (req, res, next) => {
     res.status(204).json({})
-}
-
+})
